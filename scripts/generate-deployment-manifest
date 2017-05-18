@@ -56,7 +56,6 @@ fi
 if [ -z ${property_overrides} ]; then
   >&2 echo "ERROR: Property-overrides stub file is missing"
   argument_error=true
-
 else
   if [ ! -f "${property_overrides}" ]; then
     >&2 echo "ERROR: Property-overrides stub '${property_overrides}' is not a regular file"
@@ -80,4 +79,3 @@ spiff merge \
   ${release_versions} \
   ${property_overrides} \
   ${iaas_settings}
-

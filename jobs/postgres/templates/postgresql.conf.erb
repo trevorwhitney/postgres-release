@@ -19,6 +19,11 @@ max_connections = <%= p("databases.max_connections", 500) %>
 external_pid_file = '/var/vcap/sys/run/postgres/postgres.pid'
 authentication_timeout = 1min
 
+ssl=on
+ssl_ca_file='/var/vcap/jobs/postgres/config/certificates/server.ca_cert'
+ssl_key_file='/var/vcap/jobs/postgres/config/certificates/server.private_key'
+ssl_cert_file='/var/vcap/jobs/postgres/config/certificates/server.public_cert'
+
 shared_buffers = 128MB
 temp_buffers = 8MB
 

@@ -8,10 +8,99 @@ properties:
     port: 5524
     roles:
     - name: pgadmin
-      password: admin
       tag: admin
     - name: pgother
-      password: other
       tag: other
       permissions:
       - CONNECTION LIMIT 10
+
+    tls:
+      # test/certificates/server-ca.crt
+      ca_cert: |
+        -----BEGIN CERTIFICATE-----
+        MIIE6jCCAtKgAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwpwb3N0
+        Z3Jlc0NBMB4XDTE3MDUxOTEyMTg1NloXDTI3MDUxOTEyMTg1NlowFTETMBEGA1UE
+        AxMKcG9zdGdyZXNDQTCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBALWy
+        1NUM5D/yyfxk25dBBCf0n9rQsJep2s5mftWFwylRP4NLgTAUGanAO6bgjkuygWm/
+        fOrFQZv49zjsIBnMD86lZy96OeIWEMwdTkmK0rz7H3y1MOQuJIvsHzRZ+Lh0KEn/
+        P6rakyri8Y2DeOur/GahHJS1hoFef5h+5/7Lt8u7p6eJAMTgDoWglyVK4hw5hRFn
+        udBz3qEs/KxQO94otrkkgFwyMG6W3c+HtvYUa8UJYxfkAXVR58dAuYsWoKHI9+Vn
+        UZktTcb0+T/IaOPbdix+hJ+2rzyIld+mWMR9F0wOSUHrM9jSuaCPqWAIynjURoay
+        sf6y/PMdn5hJqEWGTv0RkZWGNcSqh4urBwYvGmzYqmXmN0SpG4db4h7ANpRS9vu4
+        sA5gOUF57Ym0INk/kCp5XfFDNgu/Yly0yQkvjREF4OX8/PkkAN4hMMa5Jm1V29rZ
+        cDEWuZJ6DcEhvCLBr3dMt9U0zL3gwUfiZOrZZTlfALyuJ+UofV3vcc0qwkzCQfAe
+        2fYspRxnooDIU9Y08fVnK31UO1w8rJzJ1ioyPPh/DXTN4bu/ogJMXnHuYSytl1h6
+        XmBgRfP+gcnhmYpSpJaajzdvmkUntJyzErmhHPw1PodWEoo1bac1HZ4Bs41u4L5O
+        G4aB/bxYsnKp2uIdAZpZTCcbHyFpFZHlSJMxnuXpAgMBAAGjRTBDMA4GA1UdDwEB
+        /wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdDgQWBBQpwWKAROJOKOid
+        oJhpgTuOPhQ9fTANBgkqhkiG9w0BAQsFAAOCAgEAhfUT0o1eJz525KERddgtxC9K
+        yaiD6U+4Ts+qj0FarJTgbWPJUiHVLC0o4fO4f+tYXgBLhDY7jLZqy6k/Hmj0DkwV
+        EioT8BbLZrhJOcQWkBWryh8IAks5UTsvYHQK4RVHq/j7v17up4MOLKGprdoiNvoV
+        nNhWECN77Q/K+uH+UpPaafWTUEThU6Fm+wTO7JHe+3kgXm7dnJCBfoF7NY+obcvJ
+        cU1R93tWGrfvuZGQuLOc39Rh1R+ap2XohPDSievO1e27wqMhCpvplVL80HmWQWid
+        2isU9TGuPBNNUwyHCLbGrzQxN4MOm2COfq/yq+GcjHVhrj84TEe847lu9dFcVF8O
+        lOl3O3SApiBtWPuWa0HX478c/g1iqRMb3fbY3py+z0M8+G8qYDfIVF08+J6lr8sU
+        ujXu7EUpJctG66HlHUXWcnAMil3EJ/1aFK4yCFeS1GJE+410+4xh7KdkLJ78Eo45
+        5IQrTmgm2fgX/v5+WSvuZpTbX2Ken13ezLZmzNAAj7+Us5g4lfHZiRS1fwP45IMG
+        2uhV77uIGc70u85umfxj9EpNAvLxOYfXGnvwzZhOowlV3KC8qeieOsUKvN59sbm7
+        FFA5zYAJVuS/qYfyqDfpcbfQ9bef0PN47YMjIpKPYkCRZ5KlFaZpB5LXIoqBpl0n
+        q3ga+AqrTUEfFIQPwbQ=
+        -----END CERTIFICATE-----
+
+      # test/certificates/server.crt
+      public_cert: |
+        -----BEGIN CERTIFICATE-----
+        MIIENzCCAh+gAwIBAgIQAPDixks87mCY10wfDv9MvzANBgkqhkiG9w0BAQsFADAV
+        MRMwEQYDVQQDEwpwb3N0Z3Jlc0NBMB4XDTE3MDUxOTEyMTg1N1oXDTE5MDUxOTEy
+        MTg1N1owJzElMCMGA1UEAxMccG9zdGdyZXMuc2VydmljZS5jZi5pbnRlcm5hbDCC
+        ASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALVgFN7K1ykp8ElbTqoWXORF
+        6yFX3cqmLtmiIJ9j69Id2Iar2LlwC+rqUIePvTKOaZJXPrM2HkPV/v0ofjEpmudF
+        lFx15boPMEi/AFhu1tSltmLt+S2Tkml3ALTtCEuc1aPMhdc95CJe63/bw4YMq7Xy
+        Z6FeMr8xxooOyWpMVhOlXqpV+v6KGTKM5kQTcKr8AHJXhmLDR+TmGt+AZS8PBkhk
+        dF7sVAWF+Eqs4Na9/bYL/ahumuw64dQrx9+tc0vs+oIC5VUnzkpkAEjp0V4/19Zj
+        yuG6xqOgAXRcYOz6phaMWVcG8hNY2+4RWd0CxJS9hyCZ/BGQE6p7EwivLGOV+VUC
+        AwEAAaNxMG8wDgYDVR0PAQH/BAQDAgO4MB0GA1UdJQQWMBQGCCsGAQUFBwMBBggr
+        BgEFBQcDAjAdBgNVHQ4EFgQUeRUq2uKx3ZMe4dY/ix7MI4EkheIwHwYDVR0jBBgw
+        FoAUKcFigETiTijonaCYaYE7jj4UPX0wDQYJKoZIhvcNAQELBQADggIBAFdUREaI
+        tFJRaDJibzA/3teUZJ0eI7JEvhpVXHodUCAib5oySgmqjvAek9+9j7YrHUMwu4GE
+        Y6vRx5V+9t+HrdhOYLR7MdPbUb/AkiTwJFJunpxzFKZJDTjPuzB42nHluT9NB+ua
+        V9azysomSo4lGkw2TSKx6rDgVTDGDhl7+yhVDF/ny22nuW5uwuOl8JIisIvBIOyW
+        XFi/6oSAPc1xYJfkz/AOqEc1JBuTADB1SvcuKF60gnEY0oBIz8s1EiOcoifLV3rn
+        OGp8J52DYQRVQCHexUqiSdRIz74nLlK3ZpTBaE9lRoH72YHNSDctVha9I2rHPB8s
+        qgGZyuC6Qooza0glWYgmw+jxm+N4Zfbbl/1bufROeDa5X/SvPnyKrs5m687NJJtH
+        TqWaOU0EfSsdZEp37cG+uS5MVU5SAZIBK1Aad6IRLx8JoEgp1QNZPTX3jGSnvgKn
+        U5aMvRF7yjqCAaUXMgAHIGyxrIPVkVXk92mkpySdkBZN5AA2y0wB1GjVvRxnsa5U
+        NZnJY5Z17AUN4m0k9Mt52QdtbXjStyWIZmYRVuc2jZM+X9Uwrf79bj8RBmKNzezR
+        h3X45X9X0rhJekuAb9rEkg3K1yGABcWKorU5MkP2c1dTarKKmYd2xbzZF651ddaM
+        hftYBhetbY1gjEtIqTv+4RuI0aVqTjHrDXfG
+        -----END CERTIFICATE-----
+
+      # test/certificates/server.key
+      private_key: |
+        -----BEGIN RSA PRIVATE KEY-----
+        MIIEowIBAAKCAQEAtWAU3srXKSnwSVtOqhZc5EXrIVfdyqYu2aIgn2Pr0h3YhqvY
+        uXAL6upQh4+9Mo5pklc+szYeQ9X+/Sh+MSma50WUXHXlug8wSL8AWG7W1KW2Yu35
+        LZOSaXcAtO0IS5zVo8yF1z3kIl7rf9vDhgyrtfJnoV4yvzHGig7JakxWE6VeqlX6
+        /ooZMozmRBNwqvwAcleGYsNH5OYa34BlLw8GSGR0XuxUBYX4Sqzg1r39tgv9qG6a
+        7Drh1CvH361zS+z6ggLlVSfOSmQASOnRXj/X1mPK4brGo6ABdFxg7PqmFoxZVwby
+        E1jb7hFZ3QLElL2HIJn8EZATqnsTCK8sY5X5VQIDAQABAoIBAHTGlslWya7sHJPu
+        YLhry4UBa0C9hMQbuOBQXTaiK8vNgYI7lD7YYCPwlsahCgxJ2rjoySqzNkswtYqj
+        DpRymBQ9HSdmlPD1JH5B02QcgN7KjqIlW6A3ejXC88aJMiUUpgxe+vE5HO/wMynQ
+        AZQGBmwP1R71OjEVSCHNIWr6GRVt9heJL4KWLdJnCimqGw2SRkaXUKUxUKCLIoHW
+        v2j+nDfZYIU0x4RRIi0TZu/+5lEOmCZDLiJumOuhrxvjqydNDm1Rtvh5DmBoPYLt
+        ov6lHXub6pxWhEbb37WHXCkuiIv/9CgIBW6Xuglw11eTjyp2w6l7clpLQtK6Y1pS
+        iKuqI4ECgYEAxltpgQYe8hOA662XjH1OblPtE6NCa6XqspQG97AZcKSa7ztKUYii
+        Ac7A9oyxcWpDyvXSBiA9V7sxyyDViD1vEc0hpuT3gVpK8MpySpXwWh+dwvj1K/de
+        C5UAgy/jOoe5h5lkMzNBlhzjd5tKRyXeRPBARmGz3drXvSMSECJ6yiECgYEA6hVT
+        ze8W3Ex0Hd6gN3HhzAq8mdpyjJkwTk28XTtPtaWY/lAwBfa1DJwBu3eeqMykHB99
+        QSolmSFgMEs8nPMH7735OasbF0pANKwHmgaHE6g9kaw0HLTDRUBoQ1i86crMrbC5
+        Uw3BvEBYzbeXoFACZGZKxgoOO4OicwIsDn/DELUCgYAu60SDfn0nabGfDcrBMoqw
+        0i1L7dwyNmbTouwa/o6l9GmpmO61Zopbvxopt5Hpb+dlRMxPIqUf8WmP0M5xkYaK
+        QWlqXtKkyETdvCVYuyrFRqE8k0L7CWI3fyFF5rfrClu6VXA8JC2pYl/z1Mm3FqAC
+        0omBnG69VZyeYoNNSbqdwQKBgCYtvlJrOX5K1fF9OwJwB5Tg92vcjixSW+eZlCxc
+        nR6SWMa5y2tdlp/s3fd2hiEf53BSznoPZrx4DhkyXDt5BAVdJcX7G1sMGDa/DCpa
+        ADP7j7cvr/wym1qzK444be9vzTxTA5cBOmT61cEPvaI/CnTXnkB4qWOZj6hUZV0k
+        B2u1AoGBALGdOk5lihQ7uD3I281iBMZJ3+cihjyycOdzaP/TYjCykCsLz4AsPsdB
+        HpXKGq9OP6tenpKXciXvfz8fj6XAV0tlsjJK+V2L/5dgpnDtv4CTPi0KAJMnNaNj
+        zrfQ6X1bR47LrTDn6LUgIiVAKVUQPNWDe9krJi7lwaeG8OtslTBe
+        -----END RSA PRIVATE KEY-----
