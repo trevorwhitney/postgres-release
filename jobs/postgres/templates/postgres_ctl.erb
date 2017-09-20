@@ -13,7 +13,14 @@ function main() {
   set -u
 
   case "${action}" in
-    "start")
+   "start")
+
+      pid_guard "${CONTROL_JOB_PIDFILE}" "Postgres control job" "false"
+      if [ "$?" != "0" ]; then
+        echo "WARNING: Postgres control job is already running with pid `cat ${CONTROL_JOB_PIDFILE}`. Exiting."
+        exit 0
+      fi
+      echo $$ > ${CONTROL_JOB_PIDFILE}
       if [ -d $DATA_DIR -a -f $POSTGRES_UPGRADE_LOCK ]; then
         echo "FAIL: DB upgrade stopped in the middle, manual intervention required, quitting..."
         exit 1
@@ -40,7 +47,21 @@ function main() {
 
       echo "" > "${PIDFILE}"
 
-      exec "${JOB_DIR}/bin/postgres_start.sh"
+      echo "Running pre-start actions"
+      run-parts -v --exit-on-error "${JOB_DIR}/bin/pre-start.d"
+
+      echo "Starting PostgreSQL: "
+
+      "${PACKAGE_DIR}/bin/pg_ctl" -o "-h ${HOST} -p ${PORT}" \
+         -w start -D "${DATA_DIR}" -l "${DATA_DIR}/pg_log/startup.log"
+
+      echo "PostgreSQL started successfully"
+
+      echo "Running post-start actions"
+      run-parts -v --exit-on-error "${JOB_DIR}/bin/post-start.d"
+      echo "All actions completed successfully"
+
+      echo "" > "${CONTROL_JOB_PIDFILE}"
       ;;
 
     "stop")
